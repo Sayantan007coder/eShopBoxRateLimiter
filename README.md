@@ -44,3 +44,23 @@ Allows at most `N` requests in any rolling one-second period.
 - This limiter works for one Java process only. Multiple application instances need a shared distributed limiter.
 
 Java 17 or newer and Maven are required.
+
+## Run
+
+Run the test suite from the project directory:
+
+```shell
+mvn test
+```
+
+Maven prints the test results to the console and writes detailed reports under
+`target/surefire-reports`.
+
+To use the limiter in Java:
+
+```java
+RateLimiter limiter = new FixedWindowRateLimiter(10);
+if (limiter.allowRequest()) {
+    // Make the channel API call.
+}
+```
